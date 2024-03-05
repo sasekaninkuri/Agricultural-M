@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{{ url_for('static', filename='lo') }}">
+    </head>
+    <body>
+        <div class="container">
+        <div class="Image-container">
+
+            <img src="/Static/Container Image.jpeg" alt="">
+
+        <form action="/login" method="post">
+            <div class="Card">
+                <center><h1>Login</h1></center>
+                <br><br><br><br>
+                <div class="form-group">
+                    <label for="name">Username:</label>
+                    <input type="username" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="name">Password:</label>
+                    <input type="password" id="Password" name="password" maxlength="8">
+                    <a class="forgot" href="forgot_password.html">Forgot Password?</a>
+                    
+                </div>
+                <br><br><br>
+                <button type="submit">sign in</button>
+                <a class="forgot" href=""> <button type="submit">sign up</button></a>
+                
+        </div>
+        </div> 
+        </form>  
+    </div>  
+
+        </body>
+
+        </html>
+
