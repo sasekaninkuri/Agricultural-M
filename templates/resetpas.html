@@ -13,18 +13,20 @@
         <div class="container">
             <div class="image-container">
                 <img src="/Innocentia/Admin_Salon_PWD/5e83ec250197543953fb241914288a96.jpg" alt="background Image">
+               
                 <div class="Card">
+                    <form action="/resetpas/<id>" method="patch">
                     <h1><center><b>Reset Password</center></b></h1>
                     <p><center>Enter a new password for reception88@gmail.com</center></p>
 
                     <div class="form-group">
                         <label for="name">New Password:</label>
-                        <input type="text" id="name" name="name" required><br><br>
+                        <input type="password" id="password" name="password" required><br><br>
                     </div>
 
                     <div class="form-group">
                         <label for="name">Confirm Password:</label>
-                        <input type="text" id="name" name="name" required><br><br>
+                        <input type="password" id="confirm password" name="confirm password" required><br><br>
                     </div>
 
 
@@ -32,7 +34,7 @@
                     
 
                     <center><button type="submit">Submit</button></center><br><br>
-                
+                </form>
                 </div> 
              
                 

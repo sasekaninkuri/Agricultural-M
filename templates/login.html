@@ -9,13 +9,13 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="/Sasekani Admin.salon/Admin_Salon_PWD/Static/login.css">
+        <link rel="stylesheet" href="/static/login.css">
     </head>
     <body>
         <div class="container">
         <div class="Image-container">
 
-            <img src="/Sasekani Admin.salon/Admin_Salon_PWD/Static/Container Image.jpeg" alt="">
+            <img src="/static/Container Image.jpeg" alt="">
 
         <form action="/login" method="post">
             <div class="Card">
@@ -28,19 +28,18 @@
                 <div class="form-group">
                     <label for="name">Password:</label>
                     <input type="password" id="Password" name="password" maxlength="8">
-                    <a class="forgot" href="/resetpas.html">Forgot Password?</a>
+                    <a class="forgot" href="/resetpas/<id>">Forgot Password?</a>
                     
                 </div>
                 <br><br><br>
                 <button type="submit">sign in</button>
-                <a class="forgot" href=""> <button type="submit">sign up</button></a>
+            </form> 
+                <a class="signup" href="/signup"><button type="submit">sign up</button></a>
                 
-        </div>
+          </div>
         </div> 
-        </form>  
     </div>  
-
-        </body>
-
-        </html>
+ 
+</body>
+</html>
 
