@@ -4,6 +4,7 @@ from bson.objectid import *
 import json
 
 
+
 app = Flask(__name__)
 app.config["MONGO_URI"] = "mongodb://localhost:27017/SalonAdmin"
 Mongo = PyMongo(app)
@@ -62,7 +63,7 @@ def login():
         if user is None:
          return redirect(url_for('signup'))
         else:
-         return redirect(url_for('getHair'))
+         return redirect(url_for('index'))
     except Exception as e:
      print("An error occurred:", e)
 
@@ -89,7 +90,7 @@ def resetpas():
 
 # Add Service
 
-@app.route('/Add', methods=['POST'])
+@app.route('/Add', methods=["POST", "GET"])
 def add_service():
     if request.method == 'POST':
         name = request.form['name']
@@ -107,17 +108,20 @@ def add_service():
 
 @app.route("/hairstyle", methods=["POST", "GET"] )
 def getHair():
-     if request.method == 'Get':
+     if request.method == 'GET':
           hair = []
+
           for i in db.Hairstyle.find():
-              hair.append(i[0][0])
+            hair.append(i)
+            
+             
      
-     return render_template("hairstyle.html", x=i )
+     return render_template("hairstyle.html" , x=hair )
 
 
 @app.route('/index')
 def index():
-       return "login"
+       return render_template("Dashboard.html")
     
 if __name__ == "__main__":
     app.run (debug=True)

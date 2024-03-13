@@ -7,7 +7,7 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="/static/hairstyle.css">
+        <link rel="stylesheet" href="/static/Dashboard.css">
     </head>
     <body>
         <div class="container">
@@ -70,18 +70,18 @@
                                 <path d="M3.5 3.5c-.614-.884-.074-1.962.858-2.5L8 7.226 11.642 1c.932.538 1.472 1.616.858 2.5L8.81 8.61l1.556 2.661a2.5 2.5 0 1 1-.794.637L8 9.73l-1.572 2.177a2.5 2.5 0 1 1-.794-.637L7.19 8.61zm2.5 10a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0m7 0a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0"/>
                               </svg>
                           </span>
-                          
-                          <span>Services</span>
-                          <div class="dropdown-content">
-                            <b><a href="#">Hair Cuts</a></b>
-                            <b><a href="#">Hairstyle</a></b>
-                            <b><a href="#">Nails</a></b>
-                            <b><a href="#">Make-Up</a></b>
-                            <b><a href="#">Weave Installations</a></b>
-                          </div>
+
+                        <span>Services</span>
+                        <div class="dropdown-content">
+                          <b><a href="#">Hair Cuts</a></b>
+                          <b><a href="/hairstyle">Hairstyle</a></b>
+                          <b><a href="#">Nails</a></b>
+                          <b><a href="#">Make-Up</Make-Up></a></b>
+                          <b><a href="#">Weave Installations</a></b>
+                        </div>
                     </a></li>
                     <br><br>
-                    <li><a href="#">
+                    <li><a href="">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-badge-fill" viewBox="0 0 16 16">
                                 <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2zm4.5 0a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1zM8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6m5 2.755C12.146 12.825 10.623 12 8 12s-4.146.826-5 1.755V14a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1z"/>
@@ -89,7 +89,6 @@
                           </span>
                           <span>Employees</span>
                     </a></li><br>
-                    
                     <li><a href="#">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
@@ -119,107 +118,41 @@
                 </ul>
             </div>
             <div class="content">
-                <h1>Services</h1>
-                <h3>Hairstyles</h3>
-                <div class="button-container">
-                   <a href="/Add"><button>Add</button></a>
-                    <button>Update</button>
-                    <button>Delete</button>
-
-                
-
-              
-                  <table  action="/hairstyle" method="GET" border="1">
-                    <thead>
-                    <tr>
-                      <th>Name</th>
-                      <th>Price</th>
-                    </tr>
-                  </thead>
-                  {% for i in x %}
-                    <tr>
-                      <td>{{i.name}}</td>
-                      <td>{{i.price}}</td>
-                      
-                    </tr>
-                    {% endfor %}
-                  </table>
-                  <!-- {% for i in x %}
-                  
-                   <h3>Hairstyle</h3>
-                    <p>{{x}}</p>
-                    {% endfor %} -->
-                    <!-- <div class="text-right">
-                      <p>{{x.price}}</p>
-                      
-                    </div> -->
-
-                <!-- </div>
-                <br> -->
-                <!-- <div class="card">
-                  {% for i in x %}
-                
-                  <h3>Hairstyle</h3>
-                  <p>{{x.name}}</p>
-                  <div class="text-right">
-                    <p>{{x.price}}</p>
-                    {% endfor %}
+                <h1>Dashboard</h1>
+                <p>Overview.</p>
+                <div class="container text-center">
+                    <div class="row">
+                      <div class="col">
+                        <div class="card1" style="width: 18rem;">
+                            <img src="/static/db684040-bead-495e-a8ed-39be276baf20.jpeg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            </div>
+                          </div>
+                        Column
+                      </div>
+                      <div class="col">
+                        <div class="card1" style="width: 18rem;">
+                            <img src="/static/77353536-2a95-46e8-becb-ca4f872a087a.jpeg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            </div>
+                          </div>
+                        Column
+                      </div>
+                      <div class="col">
+                        <div class="card1" style="width: 18rem;">
+                            <img src="..." class="card-img-top" alt="...">
+                            <div class="card-body">
+                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            </div>
+                          </div>
+                        Column
+                      </div>
+                    </div>
                   </div>
-
-
-              </div> -->
-              <br>
-              <!-- <div class="card">
-                {% for i in x %}
-              
-                <h3>Hairstyle</h3>
-                <p>{{x.name}}</p>
-                <div class="text-right">
-                  <p>{{x.price}}</p>
-                  {% endfor %}
+                
                 </div>
-
-
-            </div> -->
-            <br>
-            <!-- <div class="card">
-              {% for i in x %}
-          
-              <h3>Hairstyle</h3>
-              <p>{{x.name}}</p>
-              <div class="text-right">
-                <p>{{x.price}}</p>
-                {% endfor %}
-              </div> 
-
-
-          </div> -->
-          <br>
-          <!-- <div class="card">
-            {% for i in x %}
-      
-            <h3>Hairstyle</h3>
-            <p>{{x.name}}</p>
-            <div class="text-right">
-              <p>{{x.price}}</p>
-              {% endfor %}
-            </div>
-
-
-        </div> -->
-        <br>
-        <!-- <div class="card">
-          {% for i in x %}
-     
-          <h3>Hairstyle</h3>
-          <p>{{x.name}}</p>
-          <div class="text-right">
-            <p>{{x.price}}</p>
-            {% endfor %}
-          </div>
-         </div> -->
-        </form>
-      </div>
             </div>
         </div>
      
