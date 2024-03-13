@@ -85,6 +85,19 @@ def resetpas():
                       )
       return render_template('resetpas.html')
 
+@app.route('/Add', methods=['POST'])
+def add_service():
+    if request.method == 'POST':
+        name = request.form['name']
+        price = request.form['price']
+        
+        hairtyle = { 'name': name, 'price': price}
+        
+        
+        return "Service added successfully!"
+    else:
+        return "Invalid request method"
+
 @app.route("/hairstle", methods=["POST", "GET"] )
 def getHair():
      if request.method == 'Get':
