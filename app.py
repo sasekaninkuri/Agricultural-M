@@ -62,12 +62,14 @@ def login():
         if user is None:
          return redirect(url_for('signup'))
         else:
-         return redirect(url_for('index'))
+         return redirect(url_for('getHair'))
     except Exception as e:
      print("An error occurred:", e)
 
 
     return render_template('login.html')
+
+#Reset Password
 
 @app.route("/resetpas", methods=['PATCH'] )
 def resetpas():
@@ -85,6 +87,8 @@ def resetpas():
                       )
       return render_template('resetpas.html')
 
+# Add Service
+
 @app.route('/Add', methods=['POST'])
 def add_service():
     if request.method == 'POST':
@@ -92,19 +96,23 @@ def add_service():
         price = request.form['price']
         
         hairtyle = { 'name': name, 'price': price}
-        
-        
-        return "Service added successfully!"
-    else:
-        return "Invalid request method"
 
-@app.route("/hairstle", methods=["POST", "GET"] )
+        db.Hairstyle.insert_one(hairtyle)
+        
+    return render_template("AddService.html")
+    
+
+    
+# display Service
+
+@app.route("/hairstyle", methods=["POST", "GET"] )
 def getHair():
      if request.method == 'Get':
+          hair = []
           for i in db.Hairstyle.find():
-               print(i)
+              hair.append(i[0][0])
      
-     return render_template("hairstyle.html")
+     return render_template("hairstyle.html", x=i )
 
 
 @app.route('/index')

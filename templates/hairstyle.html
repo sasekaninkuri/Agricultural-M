@@ -122,20 +122,21 @@
                 <h1>Services</h1>
                 <p>Hairstyles.</p>
                 <div class="button-container">
-                    <button>Add</button>
+                   <a href="/Add"><button>Add</button></a>
                     <button>Update</button>
                     <button>Delete</button>
 
                 </div>
 
-
+              <form action="hairstyle" method="Get">
+                {% for x in i %}
                 <div class="card">
                     <label for=""></label>
                     <h3>Hairstyle</h3>
-                    <p>Bantu Knots</p>
+                    <p>{{i[0].name}}</p>
                    
                     <div class="text-right">
-                      <p>R270.00</p>
+                      <p>{{i[0].price}}</p>
                     </div>
 
                 </div>
@@ -143,9 +144,9 @@
                 <div class="card">
                   <label for=""></label>
                   <h3>Hairstyle</h3>
-                  <p>Straight Up</p>
+                  <p>{{i[1].name}}</p>
                   <div class="text-right">
-                    <p>R200.00</p>
+                    <p>{{i[1].price}}</p>
                   </div>
 
 
@@ -154,9 +155,9 @@
               <div class="card">
                 <label for=""></label>
                 <h3>Hairstyle</h3>
-                <p>Straight Back</p>
+                <p>{{i[2].name}}</p>
                 <div class="text-right">
-                  <p>R140.00</p>
+                  <p>{{i[2].price}}</p>
                 </div>
 
 
@@ -165,9 +166,9 @@
             <div class="card">
               <label for=""></label>
               <h3>Hairstyle</h3>
-              <p>French Braids</p>
+              <p>{{i[3].name}}</p>
               <div class="text-right">
-                <p>R130.00</p>
+                <p>{{i[3].price}}</p>
               </div>
 
 
@@ -176,9 +177,9 @@
           <div class="card">
             <label for=""></label>
             <h3>Hairstyle</h3>
-            <p>Top Knots</p>
+            <p>{{i[4].name}}</p>
             <div class="text-right">
-              <p>R190.00</p>
+              <p>{{i[4].price}}</p>
             </div>
 
 
@@ -187,12 +188,12 @@
         <div class="card">
           <label for=""></label>
           <h3>Hairstyle</h3>
-          <p>Side Sweep Waves</p>
+          <p>{{i[5].name}}</p>
           <div class="text-right">
-            <p>R360.00</p>
+            <p>{{i[5].price}}</p>
           </div>
-
-
+          {% endfor %}
+        </form>
       </div>
             </div>
         </div>
