@@ -17,9 +17,9 @@
 
             <img src="/static/Container Image.jpeg" alt="">
 
-        <form action="/login" method="post">
+        <form action="/login" method="post" onsubmit="validateLoginForm()">
             <div class="Card">
-                <center><h1>Login</h1></center>
+                <h1>Login</h1>
                 <br><br><br><br>
                 <div class="form-group">
                     <label for="name">Username:</label>
@@ -35,11 +35,12 @@
                 <button type="submit">sign in</button>
             </form> 
                 <a class="signup" href="/signup"><button type="submit">sign up</button></a>
-                
+            <!-- <script src="/static/login_validation.js"></script> -->
+            <script src="{{url_for('static', filename='login_validation.js')}}"></script>
           </div>
         </div> 
     </div>  
- <script src="/static/login_validation.js"></script>
+
 </body>
 </html>
 

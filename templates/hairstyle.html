@@ -122,7 +122,7 @@
                 <h1>Services</h1>
                 <h3>Hairstyles</h3>
                 <div class="button-container">
-                   <a href="/Add"><button>Add</button></a>
+                   <a href="/add_hairstyle"><button>Add</button></a>
                     <button>Update</button>
                     <button>Delete</button>
 
@@ -139,35 +139,12 @@
                   {% for i in x %}
                     <tr>
                       <td>{{i.name}}</td>
-                      <td>{{i.price}}</td>
+                      <td><p>R{{i.price}}</p></td>
                       
                     </tr>
                     {% endfor %}
                   </table>
-                  <!-- {% for i in x %}
-                  
-                   <h3>Hairstyle</h3>
-                    <p>{{x}}</p>
-                    {% endfor %} -->
-                    <!-- <div class="text-right">
-                      <p>{{x.price}}</p>
-                      
-                    </div> -->
-
-                <!-- </div>
-                <br> -->
-                <!-- <div class="card">
-                  {% for i in x %}
-                
-                  <h3>Hairstyle</h3>
-                  <p>{{x.name}}</p>
-                  <div class="text-right">
-                    <p>{{x.price}}</p>
-                    {% endfor %}
-                  </div>
-
-
-              </div> -->
+                 
               <br>
               <!-- <div class="card">
                 {% for i in x %}

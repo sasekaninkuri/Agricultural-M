@@ -1,13 +1,13 @@
 
+console.log('ertyuijokpl;xsdfcghvbjknlmjhg');
 function validateLoginForm() {
   const name = document.getElementById("name").value;
   const password = document.getElementById("password").value;
-
+   
+  console.log('ertyuijokpl;xsdfcghvbjknlmjhg');
   if (name === "" || password === "") {
     alert("Please fill in all fields");
     return false;
-  }
- 
   }
   if (password.length < 5) {
     alert("Password is too short");
@@ -18,5 +18,18 @@ function validateLoginForm() {
     alert("Password is invalid");
     return false;
   }
- document.getElementById('form').addEventListener("click",validateLoginForm)
+
+  }
+  
+  document.getElementById('form').addEventListener("click",validateLoginForm)
+
+
+
+  function updateHeading(newHeading) {
+  const name= document.getElementById("name").value
+   let heading = document.querySelector("h3");
+   heading.innerHTML = newHeading;
+ }
+ 
+
 

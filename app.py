@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for, redirect,Response
+from flask import Flask, render_template, request, url_for, redirect,Response, url_for
 from flask_pymongo import PyMongo
 from bson.objectid import *
 import json
@@ -71,7 +71,7 @@ def login():
     return render_template('login.html')
 
 #Reset Password
-
+# Not yet functioning
 @app.route("/resetpas", methods=['PATCH'] )
 def resetpas():
 
@@ -88,9 +88,9 @@ def resetpas():
                       )
       return render_template('resetpas.html')
 
-# Add Service
+# Add Hairstyle
 
-@app.route('/Add', methods=["POST", "GET"])
+@app.route('/add_hairstyle', methods=["POST", "GET"])
 def add_service():
     if request.method == 'POST':
         name = request.form['name']
@@ -99,12 +99,18 @@ def add_service():
         hairtyle = { 'name': name, 'price': price}
 
         db.Hairstyle.insert_one(hairtyle)
+        if ('form submission success'):
+                     return redirect (url_for('getHair'))
+        else:
+
+                  if ('form submission failed'):
+                   return 'form unsuccessful'
         
-    return render_template("AddService.html")
+    return render_template("AddHairstyle.html")
     
 
     
-# display Service
+# display hairstyle
 
 @app.route("/hairstyle", methods=["POST", "GET"] )
 def getHair():
@@ -119,8 +125,107 @@ def getHair():
      return render_template("hairstyle.html" , x=hair )
 
 
+# add haircut
+@app.route('/Addhaircut', methods=["POST", "GET"])
+def Addhaircut():
+    if request.method == 'POST':
+        name = request.form['name']
+        price = request.form['price']
+        
+        haircut = { 'name': name, 'price': price}
+
+        db.haircut.insert_one(haircut)
+        if ('form submission success'):
+                     return redirect (url_for('getCut'))
+        else:
+
+                  if ('form submission failed'):
+                   return 'form unsuccessful'
+        
+    return render_template("Addhaircut.html")
+
+#Display haircut
+@app.route("/haircut", methods=["POST", "GET"] )
+def getCut():
+     if request.method == 'GET':
+          cut = []
+
+          for i in db.haircut.find():
+            cut.append(i)
+            
+             
+     
+     return render_template("haircut.html" , x=cut )
+
+#Add Nails
+@app.route('/AddNails', methods=["POST", "GET"])
+def add_nails():
+    if request.method == 'POST':
+        name = request.form['name']
+        price = request.form['price']
+        
+        nails = { 'name': name, 'price': price}
+
+        db.Nails.insert_one(nails)
+        if ('form submission success'):
+                     return redirect (url_for('getNails'))
+        else:
+
+                  if ('form submission failed'):
+                   return 'form unsuccessful'
+        
+    return render_template("AddNails.html")
+
+#Display Nails
+@app.route("/nails", methods=["POST", "GET"] )
+def getNails():
+     if request.method == 'GET':
+          nails = []
+
+          for i in db.Nails.find():
+            nails.append(i)
+            
+             
+     
+     return render_template("haircut.html" , x=nails )
+
+#Add Makeup
+@app.route('/AddMakeup', methods=["POST", "GET"])
+def add_makeup():
+    if request.method == 'POST':
+        name = request.form['name']
+        price = request.form['price']
+        
+        Makeup = { 'name': name, 'price': price}
+
+        db.Makeup.insert_one(Makeup)
+        if ('form submission success'):
+                     return redirect (url_for('getMakeup'))
+        else:
+
+                  if ('form submission failed'):
+                   return 'form unsuccessful'
+        
+    return render_template("AddNails.html")
+
+#Display Makeup
+@app.route("/Makeup", methods=["POST", "GET"] )
+def getMakeup():
+     if request.method == 'GET':
+          up = []
+
+          for i in db.Makeup.find():
+            up.append(i)
+            
+             
+     
+     return render_template("haircut.html" , x=up )
+
+
+
 @app.route('/index')
 def index():
+       
        return render_template("Dashboard.html")
     
 if __name__ == "__main__":
