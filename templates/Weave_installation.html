@@ -75,11 +75,11 @@
                         
                         <span>Services</span>
                         <div class="dropdown-content">
-                          <b><a href="http://127.0.0.1:5501/haircuts.html">Hair Cuts</a></b>
-                          <b><a href="http://127.0.0.1:5500/static/templates/hairstyle.html">Hairstyle</a></b>
-                          <b><a href="http://127.0.0.1:5500/nails.html">Nails</a></b>
-                          <b><a href="http://127.0.0.1:5500/Makeup.html">Make-Up</Make-Up></a></b>
-                          <b><a href="http://127.0.0.1:5500/Templates/Weave%20installation.html">Weave Installations</a></b>
+                          <b><a href="/haircut">Hair Cuts</a></b>
+                          <b><a href="/hairstyle">Hairstyle</a></b>
+                          <b><a href="/nails">Nails</a></b>
+                          <b><a href="/Makeup">Make-Up</Make-Up></a></b>
+                          <b><a href="/Weave_installation">Weave Installations</a></b>
                         </div>
                   </a></li>
                     <br>
@@ -123,14 +123,29 @@
                 <h1>Services</h1>
                 <p>Weave Installations</p>
                 <div class="button-container">
-                    <button>Add</button>
+                    <a href="/AddWeave"><button>Add</button></a>
                     <button>Update</button>
                     <button>Delete</button>
 
                 </div>
+                <table  action="/Weave_installation" method="GET" border="1">
+                  <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                  </tr>
+                </thead>
+                {% for i in x %}
+                  <tr>
+                    <td>{{i.name}}</td>
+                    <td><p>R{{i.price}}</p></td>
+                    
+                  </tr>
+                  {% endfor %}
+                </table>
 
 
-<br><br>
+<!-- <br><br>
                 <div class="card">
                     <label for=""></label>
                     <h3>Weave Installation</h3>
@@ -205,7 +220,7 @@
             <p>R2500</p>
          </div>
          
-         
+          -->
 
       </div>
             </div>

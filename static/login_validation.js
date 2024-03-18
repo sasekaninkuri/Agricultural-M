@@ -1,10 +1,10 @@
 
-console.log('ertyuijokpl;xsdfcghvbjknlmjhg');
+
 function validateLoginForm() {
   const name = document.getElementById("name").value;
   const password = document.getElementById("password").value;
    
-  console.log('ertyuijokpl;xsdfcghvbjknlmjhg');
+
   if (name === "" || password === "") {
     alert("Please fill in all fields");
     return false;
@@ -25,11 +25,11 @@ function validateLoginForm() {
 
 
 
-  function updateHeading(newHeading) {
-  const name= document.getElementById("name").value
-   let heading = document.querySelector("h3");
-   heading.innerHTML = newHeading;
- }
+//   function updateHeading(newHeading) {
+//   const name= document.getElementById("name").value
+//    let heading = document.querySelector("h3");
+//    heading.innerHTML = newHeading;
+//  }
  
 
 

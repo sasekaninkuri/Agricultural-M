@@ -187,7 +187,7 @@ def getNails():
             
              
      
-     return render_template("haircut.html" , x=nails )
+     return render_template("nails.html" , x=nails )
 
 #Add Makeup
 @app.route('/AddMakeup', methods=["POST", "GET"])
@@ -206,7 +206,7 @@ def add_makeup():
                   if ('form submission failed'):
                    return 'form unsuccessful'
         
-    return render_template("AddNails.html")
+    return render_template("AddMakeup.html")
 
 #Display Makeup
 @app.route("/Makeup", methods=["POST", "GET"] )
@@ -219,8 +219,39 @@ def getMakeup():
             
              
      
-     return render_template("haircut.html" , x=up )
+     return render_template("Makeup.html" , x=up )
 
+#Add Weave
+@app.route('/AddWeave', methods=["POST", "GET"])
+def add_weave():
+    if request.method == 'POST':
+        name = request.form['name']
+        price = request.form['price']
+        
+        Weaves = { 'name': name, 'price': price}
+
+        db.Weaves.insert_one(Weaves)
+        if ('form submission success'):
+                     return redirect (url_for('getWeaves'))
+        else:
+
+                  if ('form submission failed'):
+                   return 'form unsuccessful'
+        
+    return render_template("AddWeave.html")
+
+#Display Weave
+@app.route("/Weave_installation", methods=["POST", "GET"] )
+def getWeaves():
+     if request.method == 'GET':
+          weave = []
+
+          for i in db.Weaves.find():
+            weave.append(i)
+            
+             
+     
+     return render_template("Weave_installation.html" , x=weave )
 
 
 @app.route('/index')
