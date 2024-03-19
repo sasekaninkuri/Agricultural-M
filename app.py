@@ -259,6 +259,19 @@ def getWeaves():
 #      return render_template()
 
 
+# Clients page
+@app.route("/clients", methods=["POST", "GET"] )
+def getClients():
+     if request.method == 'GET':
+          
+          for x in db.clients.find():
+               print(x)
+            
+             
+     
+     return render_template("clients.html" , x=x )
+
+
 @app.route('/index')
 def index():
        
