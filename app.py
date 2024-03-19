@@ -252,6 +252,11 @@ def getWeaves():
              
      
      return render_template("Weave_installation.html" , x=weave )
+ 
+ #Finance page
+#  @app.route("/finance", methods=["POST", "GET"])
+#  def getFinance():
+#      return render_template()
 
 
 @app.route('/index')
