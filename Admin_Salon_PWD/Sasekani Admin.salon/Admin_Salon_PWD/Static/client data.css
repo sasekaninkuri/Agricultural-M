@@ -1,0 +1,48 @@
+
+body {
+    background-image: url(./background\ image.jpeg);
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 1200px; /* or any other fixed width */
+    margin: 0 auto; /* center the container horizontally */
+    display: flex;
+}
+
+.sidebar {
+    height:800px;
+    width: 250px;
+    background-color: #DDD0C0;
+    color: #030303;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+    color: #050505;
+    text-decoration: none;
+}
+
+.content {
+    background-color: aliceblue;
+    flex: 1;
+    padding: 20px;
+    border-radius: 15px;
+    max-width: 1200px;
+}
+
+
+
+  
