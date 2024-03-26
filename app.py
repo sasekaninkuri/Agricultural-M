@@ -271,26 +271,26 @@ def getClients():
      
      return render_template("clients.html" , x=all_clients )
 
-# @app.route('/finance', methods=["POST", "GET"])
-# def add_clients():
-#     if request.method == 'POST':
-#         name = request.form['name']
-#         gender = request.form['gender']
-#         email = request.form['email']
-#         contacts = request.form['contacts']
+@app.route('/finance', methods=["POST", "GET"])
+def add_clients():
+    if request.method == 'POST':
+        name = request.form['name']
+        gender = request.form['gender']
+        email = request.form['email']
+        contacts = request.form['contacts']
         
-#         clients = { 'name': name, 'gender': gender,'email': email,'contacts': contacts}
+        clients = { 'name': name, 'gender': gender,'email': email,'contacts': contacts}
 
-#         db.clients.insert_one(clients)
-#         if ('form submission success'):
-#                     all_clients = []
-#                     for i in db.clients.find():
-#                         all_clients.append(i)
-#                     return render_template("clients.html", clients_data=all_clients)
-#         else:
+        db.clients.insert_one(clients)
+        if ('form submission success'):
+                    all_clients = []
+                    for i in db.clients.find():
+                        all_clients.append(i)
+                    return render_template("clients.html", clients_data=all_clients)
+        else:
 
-#                   if ('form submission failed'):
-#                    return 'form unsuccessful'
+                  if ('form submission failed'):
+                   return 'form unsuccessful'
 
 
 @app.route('/index')
