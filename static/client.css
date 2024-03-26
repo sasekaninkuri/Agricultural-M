@@ -1,5 +1,5 @@
 body {
-    background-image: url(/background\ image.jpeg);
+    background-image: url("/Admin_Salon_PWD/static/WhatsApp\ Image\ 2024-02-27\ at\ 05.22.34.jpeg");
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
@@ -37,10 +37,37 @@ body {
 .content {
     background-color: aliceblue;
     flex: 1;
-    padding: 30px;
+    padding: 20px;
     border-radius: 15px;
     max-width: 1200px;
 }
+
+.button-container {
+    text-align: center; /* Optional: Centers the buttons horizontally */
+    margin-right: -500px;
+}
+
+.button-container button {
+    display: inline-block;
+    margin-right: 10px; /* Optional: Adds space between buttons */
+    background-color: #837C6A;
+    width: 120px;
+    height: 30px;
+    border-radius: 10px; 
+}
+
+.card {
+    height: 60px;
+    width:900px;
+    background-color: #DDD0C0;
+    border: #050505;
+    border-radius: 10px;
+    padding-right: 10px;
+    padding-left: 20px;
+    position: relative;
+
+}
+
 
 Copy code
 /* Reset default margin and padding */
@@ -82,23 +109,34 @@ footer {
     width: 100%;
 }
 
-.styled-table {
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #D9D9D9;
+  }
+
+  table {
     width: 100%;
     border-collapse: collapse;
-    border: 1px solid #ddd; /* border around the table */
   }
   
-  .styled-table th,
-  .styled-table td {
-    padding: 8px; /* cell padding */
-    border-bottom: 1px solid #ddd; /* bottom border for table cells */
+  table, th, td {
+    border: 1px solid black;
   }
   
-  .styled-table th {
-    background-color: #f2f2f2; /* background color for header cells */
-    text-align: left; /* alignment of header text */
+  th, td {
+    padding: 8px;
+    text-align: left;
   }
   
-  .styled-table tbody tr:nth-child(even) {
-    background-color: #f2f2f2; /* alternate row color */
+  th {
+    background-color: #f2f2f2;
   }
