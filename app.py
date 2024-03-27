@@ -253,10 +253,40 @@ def getWeaves():
      
      return render_template("Weave_installation.html" , x=weave )
  
- #Finance page
-#  @app.route("/finance", methods=["POST", "GET"])
-#  def getFinance():
-#      return render_template()
+ #Add finance
+@app.route('/Addfinance', methods=["POST", "GET"])
+def add_finance():
+    if request.method == 'POST':
+        Date = request.form['Date']
+        Amount = request.form['price']
+        Description = request.form['Description']
+        
+        finances = { 'Date': Date, 'Amount': Amount,'Description': Description,}
+
+        db.finances.insert_one(finances)
+        if ('form submission success'):
+                     return redirect (url_for('getFinance'))
+        else:
+
+                  if ('form submission failed'):
+                   return 'form unsuccessful'
+        
+    return render_template("Addfinance.html")
+
+#Display Finance
+@app.route("/finance", methods=["POST", "GET"] )
+def getFinance():
+     if request.method == 'GET':
+          finance = []
+
+          for i in db.finances.find():
+            finance.append(i)
+            
+             
+     
+     return render_template("finance.html" , x=finance )
+ 
+
 
 
 # Clients page
@@ -271,27 +301,24 @@ def getClients():
      
      return render_template("clients.html" , x=all_clients )
 
-@app.route('/Addfinance', methods=["POST", "GET"])
-def add_clients():
-    if request.method == 'POST':
-        Date = request.form['Date']
-        Amount = request.form['Amount']
-        Description = request.form['Description']
+# @app.route('/Addfinance', methods=["POST", "GET"])
+# def add_finance():
+#     if request.method == 'POST':
+#         Date = request.form['Date']
+#         Amount = request.form['Amount']
+#         Description = request.form['Description']
         
         
-        finances = { 'Date': Date, 'Amount': Amount,'Description': Description,}
+#         finances = { 'Date': Date, 'Amount': Amount,'Description': Description,}
 
-        db.finances.insert_one(finances)
-        if ('form submission success'):
-                    finance = []
-                    for i in db.finances.find():
-                        finance.append(i)
-                    return render_template("finance.html", finances=finance)
-        else:
+#         db.finances.insert_one(finances)
+#         if ('form submission success'):
+#                     return redirect (url_for("getFinance"))
+#         else:
 
-                  if ('form submission failed'):
-                   return 'form unsuccessful'
-
+#                   if ('form submission failed'):
+#                    return 'form unsuccessful'
+#     return render_template()
 
 @app.route('/index')
 def index():
