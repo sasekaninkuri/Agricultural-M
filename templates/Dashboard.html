@@ -8,6 +8,147 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="/static/Dashboard.css">
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load("current", {packages:['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ["Element", "Density", { role: "style" } ],
+        ["Daily", 8.94, "#BE8F6E"],
+        ["Weekly", 19.30, "black"],
+        ["Monthly", 21.45, "color: #e5e4e2"]
+      ]);
+
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+      var options = {
+        title: "",
+        width: 235,
+        height: 300,
+        bar: {groupWidth: "95%"},
+        legend: { position: "none" },
+      };
+      var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+      chart.draw(view, options);
+  }
+  </script>
+
+<html>
+    <head>
+      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+      <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+  
+        function drawChart() {
+  
+          var data = google.visualization.arrayToDataTable([
+            ['Task', 'Hours per Day'],
+            ['profit',     11],
+            ['income',      2],
+            ['expenses',  2],
+        
+          ]);
+  
+          var options = {
+            title: 'Finances'
+          };
+  
+          var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+  
+          chart.draw(data, options);
+        }
+      </script>
+
+      <head>
+      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+      <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+  
+        function drawChart() {
+  
+          var data = google.visualization.arrayToDataTable([
+            ['Task', 'Hours per Day'],
+            ['profit',     11],
+            ['income',      2],
+            ['expenses',  2],
+        
+          ]);
+  
+          var options = {
+            title: 'Finances'
+          };
+  
+          var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+  
+          chart.draw(data, options);
+        }
+      </script>
+
+<script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Clients Data'],
+          ['Female',     11],
+          ['Male',    7]
+        ]);
+
+        var options = {
+          title: 'Clients Data',
+          pieHole: 0.2,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart.draw(data, options);
+      }
+    </script>
+   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   <script type="text/javascript">
+     google.charts.load('current', {'packages':['bar']});
+     google.charts.setOnLoadCallback(drawStuff);
+
+     function drawStuff() {
+       var data = new google.visualization.arrayToDataTable([
+         ['Days', 'Percentage'],
+         ["Mon ", 34],
+         ["Tue ", 27],
+         ["Wed ", 48],
+         ["Thu ", 42],
+         ["Fri ", 50],
+         ['Sat', 60]
+       ]);
+
+       var options = {
+         width: 350,
+         legend: { position: 'none' },
+         chart: {
+           title: 'Bookings',
+           subtitle: '' },
+         axes: {
+           x: {
+            //  0: { side: 'top', label: 'White to move'} // Top x-axis.
+           }
+         },
+         bar: { groupWidth: "60%" }
+       };
+
+       var chart = new google.charts.Bar(document.getElementById('top_x_div'));
+       // Convert the Classic options to Material options.
+       chart.draw(data, google.charts.Bar.convertOptions(options));
+     };
+   </script>
+    
     </head>
     <body>
         <div class="container">
@@ -50,38 +191,30 @@
                                 <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
                               </svg>
                           </span>
-                          <span>Appointments</span>
+                          <span>Appointments</span><br>
                         </a>
                       </li>
                     </li>
                     <br>
-                    <li><a href="/finance">
+                    <li><a href="#">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bank" viewBox="0 0 16 16">
                                 <path d="m8 0 6.61 3h.89a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5H15v7a.5.5 0 0 1 .485.38l.5 2a.498.498 0 0 1-.485.62H.5a.498.498 0 0 1-.485-.62l.5-2A.5.5 0 0 1 1 13V6H.5a.5.5 0 0 1-.5-.5v-2A.5.5 0 0 1 .5 3h.89zM3.777 3h8.447L8 1zM2 6v7h1V6zm2 0v7h2.5V6zm3.5 0v7h1V6zm2 0v7H12V6zM13 6v7h1V6zm2-1V4H1v1zm-.39 9H1.39l-.25 1h13.72z"/>
                               </svg>
                           </span>
-                          <span>Finances</span>
+                          <span>Finances</span><br>
                     </a></li>
                     <br>
-                    <li class="dropdown"><a href="#">
+                    <li><a href="#">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-scissors" viewBox="0 0 16 16">
                                 <path d="M3.5 3.5c-.614-.884-.074-1.962.858-2.5L8 7.226 11.642 1c.932.538 1.472 1.616.858 2.5L8.81 8.61l1.556 2.661a2.5 2.5 0 1 1-.794.637L8 9.73l-1.572 2.177a2.5 2.5 0 1 1-.794-.637L7.19 8.61zm2.5 10a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0m7 0a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0"/>
                               </svg>
                           </span>
-
-                        <span>Services</span>
-                        <div class="dropdown-content">
-                          <b><a href="/haircut">Hair Cuts</a></b>
-                          <b><a href="/hairstyle">Hairstyle</a></b>
-                          <b><a href="/nails">Nails</a></b>
-                          <b><a href="/Makeup">Make-Up</Make-Up></a></b>
-                          <b><a href="/Weave_installation">Weave Installations</a></b>
-                        </div>
+                          <span>Services</span>
                     </a></li>
-                    <br><br>
-                    <li><a href="">
+                    <br>
+                    <li><a href="#">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-badge-fill" viewBox="0 0 16 16">
                                 <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2zm4.5 0a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1zM8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6m5 2.755C12.146 12.825 10.623 12 8 12s-4.146.826-5 1.755V14a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1z"/>
@@ -97,16 +230,11 @@
                           </span>
                           <span>Clients</span>
                     </a></li><br>
-                    <li><a href="#">
+                    <li><a href="/bookings">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-quote" viewBox="0 0 16 16">
                                 <path d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388q0-.527.062-1.054.093-.558.31-.992t.559-.683q.34-.279.868-.279V3q-.868 0-1.52.372a3.3 3.3 0 0 0-1.085.992 4.9 4.9 0 0 0-.62 1.458A7.7 7.7 0 0 0 9 7.558V11a1 1 0 0 0 1 1zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612q0-.527.062-1.054.094-.558.31-.992.217-.434.559-.683.34-.279.868-.279V3q-.868 0-1.52.372a3.3 3.3 0 0 0-1.085.992 4.9 4.9 0 0 0-.62 1.458A7.7 7.7 0 0 0 3 7.558V11a1 1 0 0 0 1 1z"/>
                               </svg>
-                          </span>
-                          <span>Reviews</span>
-                    </a></li><br>
-                    <li><a href="#">
-                        <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar2-week" viewBox="0 0 16 16">
                                 <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1z"/>
                                 <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5zM11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z"/>
@@ -118,58 +246,37 @@
                 </ul>
             </div>
             <div class="content">
-              <div class="cardChart1">
-                <div class="card-body">
-                  <h2>financial overview</h2>
-                  <canvas id="barChart"></canvas>
-                  <p>Some additional text here.</p>
-                </div>
-              </div>
-    
-              <div class="cardChart2">
-                <div class="card-body">
-                  <h2>financial overview</h2>
-                  <canvas id="barChart"></canvas>
-                  <p>Some additional text here.</p>
-                </div>
-              </div>
-    
-              <div class="cardChart3">
-                <div class="card-body">
-                  <h2>financial overview</h2>
-                  <canvas id="barChart"></canvas>
-                  <p>Some additional text here.</p>
-                </div>
-              </div>
+                <h1>Dashboard</h1>
+                <p>Overview.</p>
+                <div  id="donutchart" style="width: 260px; height: 300px; float: right; margin-left: 40px;"></div><br><br>
+                <div id="top_x_div" style="width: 300px; height: 300px; margin-top: -35px; float: left; margin-left: 250px;color: antiquewhite;"></div>
+                <div id="columnchart_values" style="width: 300px; height: 400px; margin-top: -35px; margin-left: 5px;"></div>
+                <div id="piechart" style="width: 340px; height: 300px; float: right 100px; margin-left: px; margin-top: -80px"></div>
+                <div class="card-appoint" style="width: 500px; height: 300px; background-color: whitesmoke; float: right; margin-top: -300px;">
+                  <div class="button-container">
+                    <br><br>
+                    <button></button> <button class="button">Barber</button>
 
-                <!-- <h1>Dashboard</h1>
-                <p>Overview.</p> -->
-                <!-- <div class="container text-center">
-                  <div class="card-container"> -->
-                    <!-- <div class="card1">
-                      <div class="chart-container">
-                        <canvas id="barChart"></canvas>
-                    </div>
-                    </div> -->
-                    <!-- <div class="card2">Bookings
-                      <div class="chart-container">
-                        <canvas id="lineChart"></canvas>
-                      </div>
-                    </div> -->
-                    <!-- <div class="card3">Clients
-                        <div class="chart-container">
-                          <canvas id="pieChart"></canvas>
-                        </div>
-                    </div> -->
-                  <!-- </div>
-                  </div> -->
-
+                    <br><br>
+                    <button></button><button class="button">Stylist</button>
+                    <br><br>
+                    <button></button><button class="button">Barber</button>
+                    <br><br>
+                    <button></button><button class="button">Nails Tech</button>
+                    <br><br>
+                    <button></button><button class="button">Stylist</button>
+                  
+                  </div>
+                </div>
+                
+                
                 
                 </div>
             </div>
         </div>
+        
      
         
-        <script src="https://cdn.jsdelivr.net/npm/chart.js" async defer></script>
+        <script src="" async defer></script>
     </body>
 </html>

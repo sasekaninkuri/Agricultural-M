@@ -261,11 +261,13 @@ def add_finance():
         Amount = request.form['price']
         Description = request.form['Description']
         
-        finances = { 'Date': Date, 'Amount': Amount,'Description': Description,}
+        finances = { 'Date': Date, 'Amount': Amount, 'Description': Description}
 
         db.finances.insert_one(finances)
         if ('form submission success'):
+                     finance = []
                      return redirect (url_for('getFinance'))
+                    
         else:
 
                   if ('form submission failed'):
@@ -273,14 +275,14 @@ def add_finance():
         
     return render_template("Addfinance.html")
 
-#Display Finance
+# Display Finance
 @app.route("/finance", methods=["POST", "GET"] )
 def getFinance():
      if request.method == 'GET':
           finance = []
 
           for i in db.finances.find():
-            finance.append(i)
+               finance.append(i)
             
              
      
@@ -294,6 +296,7 @@ def getFinance():
 def getClients():
      if request.method == 'GET':
           all_clients = []
+          
           for x in db.clients.find():
                 all_clients.append(x)
             
@@ -301,24 +304,24 @@ def getClients():
      
      return render_template("clients.html" , x=all_clients )
 
-# @app.route('/Addfinance', methods=["POST", "GET"])
-# def add_finance():
-#     if request.method == 'POST':
-#         Date = request.form['Date']
-#         Amount = request.form['Amount']
-#         Description = request.form['Description']
-        
-        
-#         finances = { 'Date': Date, 'Amount': Amount,'Description': Description,}
 
-#         db.finances.insert_one(finances)
-#         if ('form submission success'):
-#                     return redirect (url_for("getFinance"))
-#         else:
 
-#                   if ('form submission failed'):
-#                    return 'form unsuccessful'
-#     return render_template()
+# Bookings
+@app.route('/bookings', methods=["POST", "GET"])
+def getBookings():
+    if request.method == 'POST':
+        Date = request.form['bookingdate']
+        if ('form submission success'):
+                     booking = []
+                     for i in db.booking.find({ "date":  Date}):
+                        booking.append(i)
+                     return render_template("bookings.html" , x=booking )
+        else:
+
+                  if ('form submission failed'):
+                   return 'form unsuccessful'
+        
+    return render_template("bookings.html")
 
 @app.route('/index')
 def index():
