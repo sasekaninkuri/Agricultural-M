@@ -25,6 +25,17 @@ def get_clients():
     all_clients = ClientModel.get_all_clients()
     return render_template("clients.html", x=all_clients)
 
+@mgmt_bp.route("/add_client", methods=["POST", "GET"])
+def add_client():
+    if request.method == 'POST':
+        name = request.form['Name']
+        contacts = request.form['Contacts']
+        gender = request.form['Gender']
+        email = request.form['Email']
+        ClientModel.add_client(name, contacts, gender, email)
+        return redirect(url_for('management.get_clients'))
+    return render_template("AddClient.html")
+
 @mgmt_bp.route('/bookings', methods=["POST", "GET"])
 def get_bookings():
     if request.method == 'POST':

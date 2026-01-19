@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Add Client | Glit & Glamour</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='theme.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='auth.css') }}">
+</head>
+
+<body>
+    <div class="auth-card" style="max-width: 500px;">
+        <div class="brand" style="text-align: center; margin-bottom: 1rem; font-size: 0.9rem; letter-spacing: 3px;">GLIT
+            & GLAMOUR</div>
+        <h1>Register New Client</h1>
+        <p style="text-align: center; color: var(--text-light); margin-bottom: 2rem;">Manually add a client's details to
+            your database.</p>
+
+        <form action="{{ url_for('management.add_client') }}" method="post">
+            <div class="form-group">
+                <label for="Name">Full Name</label>
+                <input type="text" id="Name" name="Name" placeholder="e.g. Sarah Johnson" required>
+            </div>
+            <div class="form-group">
+                <label for="Contacts">Phone Number</label>
+                <input type="text" id="Contacts" name="Contacts" placeholder="e.g. 082 123 4567" required>
+            </div>
+            <div class="form-group">
+                <label for="Email">Email Address</label>
+                <input type="email" id="Email" name="Email" placeholder="e.g. sarah@example.com" required>
+            </div>
+            <div class="form-group">
+                <label for="Gender">Gender</label>
+                <select id="Gender" name="Gender"
+                    style="width: 100%; padding: 12px 15px; border: 1px solid #ddd; border-radius: 8px; background: #fdfdfd; font-family: inherit; font-size: 1rem; color: var(--text-base); appearance: none; cursor: pointer;"
+                    required>
+                    <option value="" disabled selected>Select Gender</option>
+                    <option value="Female">Female</option>
+                    <option value="Male">Male</option>
+                    <option value="Other">Other</option>
+                    <option value="Prefer not to say">Prefer not to say</option>
+                </select>
+            </div>
+            <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                <button type="submit" class="btn-premium auth-btn" style="margin-top: 0;">Add Client</button>
+                <a href="{{ url_for('management.get_clients') }}" class="btn-premium auth-btn"
+                    style="margin-top: 0; background: var(--secondary); text-align: center; text-decoration: none; line-height: 1.2; display: flex; align-items: center; justify-content: center;">Cancel</a>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
