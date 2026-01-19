@@ -17,9 +17,8 @@
 
     function drawCharts() {
       // Bookings Overview Chart
-      var totalBookings = {{ stats.bookings.total }
-    };
-    var data1 = google.visualization.arrayToDataTable([
+      var totalBookings = {{ stats.bookings.total }};
+      var data1 = google.visualization.arrayToDataTable([
       ["Metric", "Count", { role: "style" }],
       ["Total Bookings", totalBookings, "#B76E79"],
       ["Completed", Math.floor(totalBookings * 0.8), "#2C2C2C"],
