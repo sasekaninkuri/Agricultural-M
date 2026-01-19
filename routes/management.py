@@ -42,4 +42,6 @@ def get_bookings():
         date = request.form['bookingdate']
         booking = BookingModel.get_bookings_by_date(date)
         return render_template("bookings.html", x=booking)
-    return render_template("bookings.html")
+    # Show all bookings by default
+    all_bookings = BookingModel.get_all_bookings()
+    return render_template("bookings.html", x=all_bookings)
