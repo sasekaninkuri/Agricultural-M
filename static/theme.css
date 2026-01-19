@@ -1,0 +1,57 @@
+:root {
+    --primary: #B76E79; /* Rose Gold */
+    --primary-dark: #9E5A63;
+    --secondary: #2C2C2C; /* Deep Charcoal */
+    --accent: #E6BE8A; /* Champagne Gold */
+    --bg-canvas: #FFFDFB; /* Soft Linen */
+    --bg-card: #FFFFFF;
+    --text-main: #2D2D2D;
+    --text-light: #757575;
+    --sidebar-bg: #F8F1F1;
+    --transition: all 0.3s ease;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --border-radius: 12px;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-main);
+    background-color: var(--bg-canvas);
+    margin: 0;
+    line-height: 1.6;
+}
+
+h1, h2, h3, .brand {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+}
+
+.premium-card {
+    background: var(--bg-card);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    padding: 2rem;
+    border: 1px solid rgba(230, 190, 138, 0.2);
+}
+
+.btn-premium {
+    background: var(--primary);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    transition: var(--transition);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.85rem;
+}
+
+.btn-premium:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(183, 110, 121, 0.4);
+}

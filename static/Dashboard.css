@@ -1,88 +1,117 @@
-body {
-  background-image: url(/static/WhatsApp\ Image\ 2024-02-27\ at\ 05.22.34.jpeg);
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-}
-
 .container {
-  max-width: 1200px; /* or any other fixed width */
-  margin: 0 auto; /* center the container horizontally */
-  display: flex;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  min-height: 100vh;
 }
 
 .sidebar {
-  height:800px;
-  width: 250px;
-  background-color: #DDD0C0;
-  color: #030303;
-  padding: 20px;
-  border-radius: 15px;
+  background-color: var(--secondary);
+  color: white;
+  padding: 2.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.brand {
+  font-size: 1.5rem;
+  color: var(--accent);
+  margin-bottom: 3rem;
+  text-align: center;
+  letter-spacing: 2px;
 }
 
 .sidebar ul {
-  list-style-type: none;
+  list-style: none;
   padding: 0;
+  margin: 0;
 }
 
-.sidebar ul li {
-  margin-bottom: 10px;
+.sidebar li {
+  margin-bottom: 0.5rem;
 }
 
-.sidebar ul li a {
-  color: #050505;
+.sidebar a {
+  color: #rgba(255, 255, 255, 0.7);
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 15px;
+  border-radius: 8px;
+  transition: var(--transition);
+  font-size: 0.95rem;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+  background: rgba(230, 190, 138, 0.15);
+  color: var(--accent);
+}
+
+.sidebar svg {
+  width: 20px;
+  height: 20px;
 }
 
 .content {
-  background-color: aliceblue;
-  flex: 1;
-  padding: 20px;
-  border-radius: 15px;
-  max-width: 1200px;
+  background-color: var(--bg-canvas);
+  padding: 3rem;
+  overflow-y: auto;
 }
-.card1{
-  background-color: bisque;
-  height: 150px;
-  width: 300px;
-  padding: 20px;
-}
-.card1-1{
-  background-color: #f5f8fa;
-  height: 120px;
-  width: 10px;
-  padding-top: 20px;
-}
-.col{
-  padding-right: 150px;
-}
-  .chart {
-      color: black;
-  }
-  
-  .content{
-  justify-content: auto;
-  align-content: flex-end;
-  }
 
-  .button {
-      background-color: white;
-      width: 80px;
-      border: none;
-      padding: 10px; /* Changed padding to 10px all around */
-      border-radius: 5px;
-      font-size: 16px;
-  }
-  .button-container{
-      text-align: left;
-      margin-left: 20px;
-  }
+.content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--secondary);
+}
 
-  .button-container button {
-      display: inline-block;
-      margin-right: 10px; /* Optional: Adds space between buttons */
-      background-color: #e7daca,;
-      width: 80px;
-      height: 30px;
-      border-radius: 10px;
-  }
+.overview-text {
+  color: var(--text-light);
+  margin-bottom: 3rem;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.chart-card {
+  background: white;
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Custom styles for the salon appointments section */
+.card-appoint {
+  background: white;
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+  margin-top: 2rem;
+}
+
+.staff-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.staff-btn {
+  background: var(--bg-canvas);
+  border: 1px solid var(--accent);
+  color: var(--secondary);
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.staff-btn:hover {
+  background: var(--accent);
+  color: var(--secondary);
+}
