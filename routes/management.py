@@ -45,3 +45,14 @@ def get_bookings():
     # Show all bookings by default
     all_bookings = BookingModel.get_all_bookings()
     return render_template("bookings.html", x=all_bookings)
+
+@mgmt_bp.route('/add_booking', methods=["POST", "GET"])
+def add_booking():
+    if request.method == 'POST':
+        categories = request.form['categories']
+        date = request.form['date']
+        time = request.form['time']
+        price = request.form['price']
+        BookingModel.add_booking(categories, date, time, price)
+        return redirect(url_for('management.get_bookings'))
+    return render_template("AddBooking.html")
