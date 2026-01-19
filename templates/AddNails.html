@@ -1,33 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Service Form</title>
-    <meta name="description" content="">
+    <title>Add Nail Service | Glit & Glamour</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-     <link rel="stylesheet" href="/static/AddNails.css">
-       
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='theme.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='auth.css') }}">
 </head>
+
 <body>
-    <div class="container">
-        <div class="Image-container">
-            <form action="/AddNails" method="post">
-               <div class="form">
-                   <center><h1>Add Service</h1></center>
-                       <center><h2>Nails</h2></center>
-                           <br><br><br>
-            
-                                
-                                   <input type="text" name="name" placeholder="Name" required>
-                                      <input type="number" name="price" placeholder="Price" required><br><br>
-                                        <center><button type="submit">Add</button></center>
-           
-      </div> 
-     </form> 
-   </div> 
- </div>  
-    <script src=""></script> 
+    <div class="auth-card" style="max-width: 500px;">
+        <div class="brand" style="text-align: center; margin-bottom: 1rem; font-size: 0.9rem; letter-spacing: 3px;">GLIT
+            & GLAMOUR</div>
+        <h1>Add Nail Service</h1>
+        <p style="text-align: center; color: var(--text-light); margin-bottom: 2rem;">Add a new manicure or art service.
+        </p>
+
+        <form action="{{ url_for('services.add_nails') }}" method="post">
+            <div class="form-group">
+                <label for="name">Service Name</label>
+                <input type="text" id="name" name="name" placeholder="e.g. Gel Overlay" required>
+            </div>
+            <div class="form-group">
+                <label for="price">Price (ZAR)</label>
+                <input type="number" id="price" name="price" placeholder="0.00" step="0.01" required>
+            </div>
+            <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                <button type="submit" class="btn-premium auth-btn" style="margin-top: 0;">Add Service</button>
+                <a href="{{ url_for('services.get_nails') }}" class="btn-premium auth-btn"
+                    style="margin-top: 0; background: var(--secondary); text-align: center; text-decoration: none; line-height: 1.2; display: flex; align-items: center; justify-content: center;">Cancel</a>
+            </div>
+        </form>
+    </div>
 </body>
+
 </html>
