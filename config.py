@@ -13,7 +13,8 @@ class DevelopmentConfig(Config):
 class ProductionConfig(Config):
     """Production configuration."""
     DEBUG = False
-    # Production MONGO_URI should be set via environment variable on Render
+    # Use environment variable or fallback to Atlas connection
+    MONGO_URI = os.environ.get('MONGO_URI', 'mongodb+srv://carlestonmashaba_db_user:x2gpdZA0Qg9d61er@cluster0.jlvmrfg.mongodb.net/SalonAdmin?retryWrites=true&w=majority')
     
 class TestingConfig(Config):
     """Testing configuration."""

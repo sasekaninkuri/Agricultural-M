@@ -12,7 +12,7 @@ def create_app(config_name=None):
     
     # Load configuration
     if config_name is None:
-        config_name = os.environ.get('FLASK_ENV', 'development')
+        config_name = os.environ.get('FLASK_ENV', 'production')
     application.config.from_object(config[config_name])
     
     # Initialize Database
