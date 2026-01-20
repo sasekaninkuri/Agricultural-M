@@ -12,7 +12,8 @@
 
   function drawCharts() {
     // Bookings Overview Chart
-    var totalBookings = {{ stats.bookings.total }};
+    var totalBookings = {{ stats.bookings.total }
+  };
   var data1 = google.visualization.arrayToDataTable([
     ["Metric", "Count", { role: "style" }],
     ["Total Bookings", totalBookings, "#B76E79"],
@@ -70,6 +71,14 @@
 <h1>Dashboard</h1>
 <p class="overview-text">Welcome back, <strong>{{ session.get('user', 'Sasekani') }}</strong>. Here's your
   salon's performance overview.</p>
+
+{% if db_error %}
+<div
+  style="background: #fee; border: 1px solid #f99; padding: 1rem; color: #900; margin-bottom: 2rem; border-radius: 8px;">
+  <strong>Database Connection Error:</strong> {{ db_error }}<br>
+  <small>Please ensure your MongoDB Atlas IP whitelist is set to allow 0.0.0.0/0.</small>
+</div>
+{% endif %}
 
 <h2 style="margin-top: 2rem; margin-bottom: 1rem; color: var(--secondary);">Dashboard Overview</h2>
 <div class="dashboard-grid">
