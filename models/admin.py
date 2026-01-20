@@ -1,15 +1,15 @@
-from models.database import mongo
+from models.database import get_db
 
 class AdminModel:
     @staticmethod
     def create_admin(name, email, address, password):
-        db = mongo.db
+        db = get_db()
         admindetails = {"name": name, "email": email, "address": address, "password": password}
         return db.admin.insert_one(admindetails)
 
     @staticmethod
     def find_admin(identifier, password):
-        db = mongo.db
+        db = get_db()
         # Use regex for case-insensitive matching on name or email
         return db.admin.find_one({
             "$or": [
@@ -21,5 +21,5 @@ class AdminModel:
 
     @staticmethod
     def update_admin_name(admin_id, new_name):
-        db = mongo.db
+        db = get_db()
         return db.admin.update_one({"_id": admin_id}, {"$set": {'name': new_name}})

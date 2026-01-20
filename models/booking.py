@@ -1,19 +1,19 @@
-from models.database import mongo
+from models.database import get_db
 
 class BookingModel:
     @staticmethod
     def get_bookings_by_date(date):
-        db = mongo.db
+        db = get_db()
         return list(db.booking.find({"date": date}))
 
     @staticmethod
     def get_all_bookings():
-        db = mongo.db
+        db = get_db()
         return list(db.booking.find())
 
     @staticmethod
     def add_booking(categories, date, time, price):
-        db = mongo.db
+        db = get_db()
         db.booking.insert_one({
             'categories': categories,
             'date': date,

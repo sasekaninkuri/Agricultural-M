@@ -1,14 +1,14 @@
-from models.database import mongo
+from models.database import get_db
 
 class GalleryModel:
     @staticmethod
     def get_all_images():
-        db = mongo.db
+        db = get_db()
         return list(db.gallery.find())
 
     @staticmethod
     def add_image(title, category, image_url, description):
-        db = mongo.db
+        db = get_db()
         db.gallery.insert_one({
             'Title': title,
             'Category': category,

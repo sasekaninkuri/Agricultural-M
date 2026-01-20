@@ -1,14 +1,14 @@
-from models.database import mongo
+from models.database import get_db
 
 class InventoryModel:
     @staticmethod
     def get_all_inventory():
-        db = mongo.db
+        db = get_db()
         return list(db.inventory.find())
 
     @staticmethod
     def add_item(name, category, count, price, description):
-        db = mongo.db
+        db = get_db()
         db.inventory.insert_one({
             'Name': name,
             'Category': category,

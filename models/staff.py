@@ -1,14 +1,14 @@
-from models.database import mongo
+from models.database import get_db
 
 class StaffModel:
     @staticmethod
     def get_all_staff():
-        db = mongo.db
+        db = get_db()
         return list(db.staff.find())
 
     @staticmethod
     def add_staff(name, role, specialty, contacts, email):
-        db = mongo.db
+        db = get_db()
         db.staff.insert_one({
             'Name': name,
             'Role': role,
