@@ -4,16 +4,16 @@
 {% block title %}Dashboard | Glit & Glamour{% endblock %}
 
 {% block head %}
-  <!-- Google Charts -->
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  <script type="text/javascript">
-    google.charts.load("current", { packages: ['corechart', 'bar'] });
-    google.charts.setOnLoadCallback(drawCharts);
+<!-- Google Charts -->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+  google.charts.load("current", { packages: ['corechart', 'bar'] });
+  google.charts.setOnLoadCallback(drawCharts);
 
-    function drawCharts() {
-      // Bookings Overview Chart
-      var totalBookings = {{ stats.bookings.total }};
-      var data1 = google.visualization.arrayToDataTable([
+  function drawCharts() {
+    // Bookings Overview Chart
+    var totalBookings = {{ stats.bookings.total }};
+    var data1 = google.visualization.arrayToDataTable([
       ["Metric", "Count", { role: "style" }],
       ["Total Bookings", totalBookings, "#B76E79"],
       ["Completed", Math.floor(totalBookings * 0.8), "#2C2C2C"],
@@ -62,29 +62,30 @@
       height: 300,
       colors: ['#B76E79']
     }));
-    }
-  </script>
+  }
+</script>
 {% endblock %}
 
 {% block content %}
-  <h1>Dashboard</h1>
-  <p class="overview-text">Welcome back, <strong>{{ session.get('user', 'Salon Admin') }}</strong>. Here's your
-    salon's performance overview.</p>
+<h1>Dashboard</h1>
+<p class="overview-text">Welcome back, <strong>{{ session.get('user', 'Salon Admin') }}</strong>. Here's your
+  salon's performance overview.</p>
 
-  <div class="dashboard-grid">
-    <div class="chart-card" id="columnchart_values"></div>
-    <div class="chart-card" id="piechart"></div>
-    <div class="chart-card" id="donutchart"></div>
-    <div class="chart-card" id="top_x_div"></div>
-  </div>
+<h2 style="margin-top: 2rem; margin-bottom: 1rem; color: var(--secondary);">Dashboard Overview</h2>
+<div class="dashboard-grid">
+  <div class="chart-card" id="columnchart_values"></div>
+  <div class="chart-card" id="piechart"></div>
+  <div class="chart-card" id="donutchart"></div>
+  <div class="chart-card" id="top_x_div"></div>
+</div>
 
-  <div class="card-appoint">
-    <h3>Our Team / Staffing</h3>
-    <div class="staff-list">
-      <a href="{{ url_for('management.get_staff') }}"><button class="staff-btn">Barber Team</button></a>
-      <a href="{{ url_for('management.get_staff') }}"><button class="staff-btn">Senior Stylists</button></a>
-      <a href="{{ url_for('management.get_staff') }}"><button class="staff-btn">Nail Technicians</button></a>
-      <a href="{{ url_for('management.get_staff') }}"><button class="staff-btn">Makeup Artists</button></a>
-    </div>
+<div class="card-appoint">
+  <h3>Our Team / Staffing</h3>
+  <div class="staff-list">
+    <a href="{{ url_for('management.get_staff') }}"><button class="staff-btn">Barber Team</button></a>
+    <a href="{{ url_for('management.get_staff') }}"><button class="staff-btn">Senior Stylists</button></a>
+    <a href="{{ url_for('management.get_staff') }}"><button class="staff-btn">Nail Technicians</button></a>
+    <a href="{{ url_for('management.get_staff') }}"><button class="staff-btn">Makeup Artists</button></a>
   </div>
+</div>
 {% endblock %}

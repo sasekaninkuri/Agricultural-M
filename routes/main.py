@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, session, redirect, url_for
 from models.client import ClientModel
 from models.finance import FinanceModel
 from models.booking import BookingModel
@@ -40,3 +40,12 @@ def index():
     }
 
     return render_template("Dashboard.html", stats=stats)
+
+@main_bp.route('/settings')
+def settings():
+    return render_template("settings.html")
+
+@main_bp.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('main.landing'))
