@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Add Image | Glit & Glamour{% endblock %}
+
+{% block content %}
+<div
+    style="max-width: 600px; margin: 0 auto; background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+    <h2 style="color: var(--secondary); margin-bottom: 1.5rem;">Add Gallery Image</h2>
+    <form action="{{ url_for('management.add_image') }}" method="post"
+        style="display: flex; flex-direction: column; gap: 1rem;">
+        <div>
+            <label>Title</label>
+            <input type="text" name="Title" placeholder="e.g. Bridal Makeup" required
+                style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+        </div>
+        <div>
+            <label>Category</label>
+            <select name="Category" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                <option value="Hair">Hair</option>
+                <option value="Makeup">Makeup</option>
+                <option value="Nails">Nails</option>
+                <option value="Wedding">Wedding</option>
+            </select>
+        </div>
+        <div>
+            <label>Image URL</label>
+            <input type="url" name="ImageUrl" placeholder="https://..." required
+                style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+            <small style="color: #666;">Provide a public URL for the image.</small>
+        </div>
+        <div>
+            <label>Description</label>
+            <textarea name="Description" rows="2"
+                style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;"></textarea>
+        </div>
+        <button type="submit" class="btn-premium" style="margin-top: 1rem;">Add to Gallery</button>
+    </form>
+</div>
+{% endblock %}

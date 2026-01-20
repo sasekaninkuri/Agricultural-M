@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% set active_page = "promotions" %}
+
+{% block title %}Promotions | Glit & Glamour{% endblock %}
+
+{% block head %}
+<style>
+    .promo-card {
+        background: linear-gradient(135deg, #fff 0%, #fff 100%);
+        border: 1px solid #eee;
+        border-left: 5px solid var(--secondary);
+        padding: 1.5rem;
+        border-radius: 8px;
+        box-shadow: var(--shadow);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+
+    .promo-info h3 {
+        color: var(--secondary);
+        margin-bottom: 0.25rem;
+    }
+
+    .discount-badge {
+        background: var(--secondary);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 50px;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+    <div>
+        <h1>Promotions</h1>
+        <p class="overview-text">Manage special offers and discounts.</p>
+    </div>
+    <a href="{{ url_for('management.add_promotion') }}" class="btn-premium">Create Promotion</a>
+</div>
+
+{% if promotions %}
+{% for p in promotions %}
+<div class="promo-card">
+    <div class="promo-info">
+        <h3>{{ p.Name }}</h3>
+        <p style="color: var(--text-base); margin-bottom: 0.5rem;">{{ p.Description }}</p>
+        <div style="font-size: 0.85rem; color: var(--text-light);">
+            Valid: <strong>{{ p.StartDate }}</strong> to <strong>{{ p.EndDate }}</strong>
+        </div>
+    </div>
+    <div class="discount-badge">
+        {{ p.Discount }}% OFF
+    </div>
+</div>
+{% endfor %}
+{% else %}
+<div class="empty-state" style="text-align: center; padding: 4rem; background: white; border-radius: 8px;">
+    <p>No active promotions.</p>
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% set active_page = "settings" %}
+
+{% block title %}Settings | Glit & Glamour{% endblock %}
+
+{% block content %}
+<h1>Settings</h1>
+<p class="overview-text">Manage your account and application preferences.</p>
+
+<div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: var(--shadow);">
+    <h3>Account Settings</h3>
+    <form style="max-width: 500px; margin-top: 1.5rem;">
+        <div style="margin-bottom: 1rem;">
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Salon Name</label>
+            <input type="text" value="Glit & Glamour"
+                style="width: 100%; padding: 0.8rem; border: 1px solid #ccc; border-radius: 4px;">
+        </div>
+        <div style="margin-bottom: 1rem;">
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Admin Email</label>
+            <input type="email" value="admin@glitglamour.co.za"
+                style="width: 100%; padding: 0.8rem; border: 1px solid #ccc; border-radius: 4px;">
+        </div>
+        <button type="button" class="btn-premium">Save Changes</button>
+    </form>
+</div>
+{% endblock %}

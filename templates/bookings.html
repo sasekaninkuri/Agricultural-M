@@ -1,0 +1,185 @@
+{% extends "base.html" %}
+{% set active_page = "bookings" %}
+
+{% block title %}Bookings | Glit & Glamour{% endblock %}
+
+{% block head %}
+<style>
+  .booking-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .filter-section {
+    background: white;
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  .filter-form {
+    display: flex;
+    align-items: flex-end;
+    gap: 1rem;
+    flex: 1;
+  }
+
+  .booking-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .booking-card {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .booking-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  }
+
+  .booking-time {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .booking-category {
+    font-family: var(--font-fancy);
+    font-size: 1.5rem;
+    color: var(--secondary);
+    margin-bottom: 0.5rem;
+  }
+
+  .booking-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--bg-canvas);
+  }
+
+  .booking-price {
+    font-weight: 600;
+    color: var(--text-base);
+  }
+
+  .booking-date-badge {
+    font-size: 0.8rem;
+    color: var(--text-light);
+  }
+
+  .empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 5rem 2rem;
+    color: var(--text-light);
+    background: white;
+    border-radius: var(--border-radius);
+    border: 1px dashed #ccc;
+  }
+
+  input[type="date"] {
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    background: #fafafa;
+    font-family: inherit;
+  }
+
+  .btn-filter {
+    padding: 10px 25px;
+    background: var(--secondary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s;
+  }
+
+  .btn-filter:hover {
+    background: #2a2c2e;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="booking-header">
+  <div>
+    <h1>Salon Bookings</h1>
+    <p class="overview-text">Track and manage your upcoming client appointments.</p>
+  </div>
+  <a href="{{ url_for('management.add_booking') }}" class="btn-premium">Add Booking</a>
+</div>
+
+<div class="filter-section">
+  <form action="{{ url_for('management.get_bookings') }}" method="post" class="filter-form">
+    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+      <label for="bookingdate" style="font-size: 0.8rem; font-weight: 600; color: var(--text-light);">Select
+        Date</label>
+      <input type="date" id="bookingdate" name="bookingdate" required>
+    </div>
+    <button type="submit" class="btn-filter">View Appointments</button>
+    {% if x %}
+    <a href="{{ url_for('management.get_bookings') }}"
+      style="font-size: 0.9rem; color: var(--primary); font-weight: 600; margin-left: 1rem; text-decoration: none;">Clear
+      Filter</a>
+    {% endif %}
+  </form>
+</div>
+
+<div class="booking-grid">
+  {% if x %}
+  {% for i in x %}
+  <div class="booking-card">
+    <div class="booking-time">
+      <svg xmlns="http://www.w3.org/2000/svg" style="width: 16px; height: 16px;" fill="none" viewBox="0 0 24 24"
+        stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      {{ i.time }}
+    </div>
+    <div class="booking-category">{{ i.categories }}</div>
+    <div class="booking-details">
+      <span class="booking-price">R {{ i.price }}</span>
+      <span class="booking-date-badge">{{ i.date }}</span>
+    </div>
+  </div>
+  {% endfor %}
+  {% else %}
+  <div class="empty-state">
+    <svg xmlns="http://www.w3.org/2000/svg" style="width: 48px; height: 48px; opacity: 0.2; margin-bottom: 1rem;"
+      fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 00-2 2z" />
+    </svg>
+    <p>No appointments found for this selection.<br>Please select a date above to view bookings.</p>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

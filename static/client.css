@@ -1,0 +1,142 @@
+body {
+    background-image: url("/Admin_Salon_PWD/static/WhatsApp\ Image\ 2024-02-27\ at\ 05.22.34.jpeg");
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 1200px; /* or any other fixed width */
+    margin: 0 auto; /* center the container horizontally */
+    display: flex;
+}
+
+.sidebar {
+    height:800px;
+    width: 250px;
+    background-color: #DDD0C0;
+    color: #030303;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+    color: #050505;
+    text-decoration: none;
+}
+
+.content {
+    background-color: aliceblue;
+    flex: 1;
+    padding: 20px;
+    border-radius: 15px;
+    max-width: 1200px;
+}
+
+.button-container {
+    text-align: center; /* Optional: Centers the buttons horizontally */
+    margin-right: -500px;
+}
+
+.button-container button {
+    display: inline-block;
+    margin-right: 10px; /* Optional: Adds space between buttons */
+    background-color: #837C6A;
+    width: 120px;
+    height: 30px;
+    border-radius: 10px; 
+}
+
+.card {
+    height: 60px;
+    width:900px;
+    background-color: #DDD0C0;
+    border: #050505;
+    border-radius: 10px;
+    padding-right: 10px;
+    padding-left: 20px;
+    position: relative;
+
+}
+
+
+Copy code
+/* Reset default margin and padding */
+body, h1, h2, h3, p {
+    margin: 0;
+    padding: 0;
+}
+
+/* Style header */
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* Style main content */
+main {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px auto;
+}
+
+section {
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    padding: 20px;
+    width: 30%;
+}
+
+/* Style footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #D9D9D9;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  table, th, td {
+    border: 1px solid black;
+  }
+  
+  th, td {
+    padding: 8px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }

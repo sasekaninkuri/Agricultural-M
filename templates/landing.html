@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Glit & Glamour | Luxury Salon</title>
+    <meta name="description" content="Premium Salon Management System">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='theme.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='landing.css') }}">
+</head>
+
+<body>
+    <div class="landing-overlay">
+        <h1 class="landing-title">GLIT & GLAMOUR</h1>
+        <p class="landing-subtitle">Premium Salon Management Excellence</p>
+
+        <div class="button-group">
+            <a href="{{ url_for('auth.login') }}">
+                <button class="btn-premium btn-landing">Sign In</button>
+            </a>
+            <a href="{{ url_for('auth.signup') }}">
+                <button class="btn-premium btn-landing" style="background: var(--secondary);">Sign Up</button>
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>

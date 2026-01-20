@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Login | Glit & Glamour</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='theme.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='auth.css') }}">
+    <style>
+        .alert {
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .alert-danger {
+            color: #721c24;
+            background: #f8d7da;
+        }
+
+        .alert-success {
+            color: #155724;
+            background: #d4edda;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="auth-card">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <h1>Welcome Back</h1>
+        <form action="{{ url_for('auth.login') }}" method="post">
+            <div class="form-group">
+                <label for="username">Salon Name</label>
+                <input type="text" id="username" name="username" placeholder="Enter your salon name" required>
+            </div>
+            <div class="form-group">
+                <label for="Password">Password</label>
+                <input type="password" id="Password" name="password" placeholder="••••••••" required>
+                <a class="forgot-link" href="{{ url_for('auth.resetpas') }}">Forgot Password?</a>
+            </div>
+            <button type="submit" class="btn-premium auth-btn">Sign In</button>
+        </form>
+        <div class="auth-footer">
+            Don't have an account? <a href="{{ url_for('auth.signup') }}">Sign Up</a>
+        </div>
+    </div>
+</body>
+
+</html>
