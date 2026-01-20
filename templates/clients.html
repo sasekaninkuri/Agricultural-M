@@ -1,188 +1,137 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
+{% set active_page = "clients" %}
 
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Clients | Glit & Glamour</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="{{ url_for('static', filename='theme.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='Dashboard.css') }}">
-  <style>
-    .client-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 2rem;
-    }
+{% block title %}Clients | Glit & Glamour{% endblock %}
 
-    .client-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1.5rem;
-    }
+{% block head %}
+<style>
+  .client-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
 
-    .client-card {
-      background: white;
-      border-radius: var(--border-radius);
-      padding: 1.5rem;
-      box-shadow: var(--shadow);
-      border: 1px solid rgba(0, 0, 0, 0.05);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
+  .client-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
 
-    .client-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
-    }
+  .client-card {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
 
-    .client-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 4px;
-      height: 100%;
-      background: var(--primary);
-    }
+  .client-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  }
 
-    .client-info h3 {
-      margin: 0 0 0.5rem 0;
-      font-family: var(--font-fancy);
-      font-size: 1.4rem;
-      color: var(--secondary);
-    }
+  .client-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--primary);
+  }
 
-    .client-meta {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      color: var(--text-light);
-      font-size: 0.9rem;
-    }
+  .client-info h3 {
+    margin: 0 0 0.5rem 0;
+    font-family: var(--font-fancy);
+    font-size: 1.4rem;
+    color: var(--secondary);
+  }
 
-    .meta-item {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
+  .client-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    color: var(--text-light);
+    font-size: 0.9rem;
+  }
 
-    .meta-item svg {
-      width: 16px;
-      height: 16px;
-      opacity: 0.7;
-    }
+  .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
 
-    .gender-tag {
-      display: inline-block;
-      padding: 2px 8px;
-      border-radius: 4px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      background: var(--bg-canvas);
-      margin-top: 1rem;
-    }
+  .meta-item svg {
+    width: 16px;
+    height: 16px;
+    opacity: 0.7;
+  }
 
-    .empty-state {
-      grid-column: 1 / -1;
-      text-align: center;
-      padding: 4rem 2rem;
-      color: var(--text-light);
-      background: white;
-      border-radius: var(--border-radius);
-    }
-  </style>
-</head>
+  .gender-tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    background: var(--bg-canvas);
+    margin-top: 1rem;
+  }
 
-<body>
-  <div class="container">
-    <aside class="sidebar">
-      <div class="brand">GLIT & GLAMOUR</div>
-      <ul>
-        <li><a href="{{ url_for('main.index') }}">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-            </svg>
-            Dashboard</a>
-        </li>
-        <li><a href="{{ url_for('management.get_finance') }}">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            Finances</a>
-        </li>
-        <li><a href="{{ url_for('services.get_hair') }}">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879M12 12L9.121 9.121m0 5.758a3 3 0 10-4.243 4.243 3 3 0 004.243-4.243zm0-5.758a3 3 0 10-4.243-4.243 3 3 0 004.243 4.243z" />
-            </svg>
-            Services</a>
-        </li>
-        <li><a href="{{ url_for('management.get_clients') }}" class="active">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-            </svg>
-            Clients</a>
-        </li>
-        <li><a href="{{ url_for('management.get_bookings') }}">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2-2v12a2 2 0 00-2 2z" />
-            </svg>
-            Bookings</a>
-        </li>
-      </ul>
-    </aside>
+  .empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--text-light);
+    background: white;
+    border-radius: var(--border-radius);
+  }
+</style>
+{% endblock %}
 
-    <main class="content">
-      <div class="client-header">
-        <div>
-          <h1>Client Management</h1>
-          <p class="overview-text">View and manage your loyal salon guests.</p>
-        </div>
-        <a href="{{ url_for('management.add_client') }}" class="btn-premium">Register Client</a>
-      </div>
-
-      <div class="client-grid">
-        {% if x %}
-        {% for i in x %}
-        <div class="client-card">
-          <div class="client-info">
-            <h3>{{ i.Name }}</h3>
-            <div class="client-meta">
-              <div class="meta-item">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
-                {{ i.Contacts }}
-              </div>
-              <div class="meta-item">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                {{ i.Email }}
-              </div>
-            </div>
-            <span class="gender-tag">{{ i.Gender }}</span>
-          </div>
-        </div>
-        {% endfor %}
-        {% else %}
-        <div class="empty-state">
-          <p>No client data found.</p>
-        </div>
-        {% endif %}
-      </div>
-    </main>
+{% block content %}
+<div class="client-header">
+  <div>
+    <h1>Client Management</h1>
+    <p class="overview-text">View and manage your loyal salon guests.</p>
   </div>
-</body>
+  <a href="{{ url_for('management.add_client') }}" class="btn-premium">Register Client</a>
+</div>
 
-</html>
+<div class="client-grid">
+  {% if x %}
+  {% for i in x %}
+  <div class="client-card">
+    <div class="client-info">
+      <h3>{{ i.Name }}</h3>
+      <div class="client-meta">
+        <div class="meta-item">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+          </svg>
+          {{ i.Contacts }}
+        </div>
+        <div class="meta-item">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+          {{ i.Email }}
+        </div>
+      </div>
+      <span class="gender-tag">{{ i.Gender }}</span>
+    </div>
+  </div>
+  {% endfor %}
+  {% else %}
+  <div class="empty-state">
+    <p>No client data found.</p>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

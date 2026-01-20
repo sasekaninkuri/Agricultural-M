@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
+{% set active_page = "dashboard" %}
 
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Dashboard | Glit & Glamour</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="{{ url_for('static', filename='theme.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='Dashboard.css') }}">
+{% block title %}Dashboard | Glit & Glamour{% endblock %}
 
+{% block head %}
   <!-- Google Charts -->
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script type="text/javascript">
@@ -51,7 +46,7 @@
     var chart3 = new google.visualization.PieChart(document.getElementById('donutchart'));
     chart3.draw(data3, { title: 'Client Demographics', pieHole: 0.4, height: 300, colors: ['#B76E79', '#E6BE8A', '#2C2C2C'] });
 
-    // Weekly Activity Pattern (sample data - can be enhanced with real booking dates)
+    // Weekly Activity Pattern
     var data4 = google.visualization.arrayToDataTable([
       ['Day', 'Bookings'],
       ["Mon", Math.floor(totalBookings * 0.12)],
@@ -69,74 +64,27 @@
     }));
     }
   </script>
-</head>
+{% endblock %}
 
-<body>
-  <div class="container">
-    <aside class="sidebar">
-      <div class="brand">GLIT & GLAMOUR</div>
-      <ul>
-        <li><a href="{{ url_for('main.index') }}" class="active">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-            </svg>
-            Dashboard</a>
-        </li>
-        <li><a href="{{ url_for('management.get_finance') }}">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            Finances</a>
-        </li>
-        <li><a href="{{ url_for('services.get_hair') }}">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879M12 12L9.121 9.121m0 5.758a3 3 0 10-4.243 4.243 3 3 0 004.243-4.243zm0-5.758a3 3 0 10-4.243-4.243 3 3 0 004.243 4.243z" />
-            </svg>
-            Services</a>
-        </li>
-        <li><a href="{{ url_for('management.get_clients') }}">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-            </svg>
-            Clients</a>
-        </li>
-        <li><a href="{{ url_for('management.get_bookings') }}">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 00-2 2z" />
-            </svg>
-            Bookings</a>
-        </li>
-      </ul>
-    </aside>
+{% block content %}
+  <h1>Dashboard</h1>
+  <p class="overview-text">Welcome back, <strong>{{ session.get('user', 'Salon Admin') }}</strong>. Here's your
+    salon's performance overview.</p>
 
-    <main class="content">
-      <h1>Dashboard</h1>
-      <p class="overview-text">Welcome back, <strong>{{ session.get('user', 'Salon Admin') }}</strong>. Here's your
-        salon's performance overview.</p>
-
-      <div class="dashboard-grid">
-        <div class="chart-card" id="columnchart_values"></div>
-        <div class="chart-card" id="piechart"></div>
-        <div class="chart-card" id="donutchart"></div>
-        <div class="chart-card" id="top_x_div"></div>
-      </div>
-
-      <div class="card-appoint">
-        <h3>Our Team / Staffing</h3>
-        <div class="staff-list">
-          <button class="staff-btn">Barber Team</button>
-          <button class="staff-btn">Senior Stylists</button>
-          <button class="staff-btn">Nail Technicians</button>
-          <button class="staff-btn">Makeup Artists</button>
-        </div>
-      </div>
-    </main>
+  <div class="dashboard-grid">
+    <div class="chart-card" id="columnchart_values"></div>
+    <div class="chart-card" id="piechart"></div>
+    <div class="chart-card" id="donutchart"></div>
+    <div class="chart-card" id="top_x_div"></div>
   </div>
-</body>
 
-</html>
+  <div class="card-appoint">
+    <h3>Our Team / Staffing</h3>
+    <div class="staff-list">
+      <a href="{{ url_for('management.get_staff') }}"><button class="staff-btn">Barber Team</button></a>
+      <a href="{{ url_for('management.get_staff') }}"><button class="staff-btn">Senior Stylists</button></a>
+      <a href="{{ url_for('management.get_staff') }}"><button class="staff-btn">Nail Technicians</button></a>
+      <a href="{{ url_for('management.get_staff') }}"><button class="staff-btn">Makeup Artists</button></a>
+    </div>
+  </div>
+{% endblock %}

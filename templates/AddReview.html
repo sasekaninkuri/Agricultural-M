@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Add Review | Glit & Glamour{% endblock %}
+
+{% block content %}
+<div
+    style="max-width: 600px; margin: 0 auto; background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+    <h2 style="color: var(--secondary); margin-bottom: 1.5rem;">Log Client Review</h2>
+    <form action="{{ url_for('management.add_review') }}" method="post"
+        style="display: flex; flex-direction: column; gap: 1rem;">
+        <div>
+            <label>Client Name</label>
+            <input type="text" name="ClientName" required
+                style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+        </div>
+        <div>
+            <label>Date of Visit</label>
+            <input type="date" name="Date" required
+                style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+        </div>
+        <div>
+            <label>Rating (1-5)</label>
+            <select name="Rating" required
+                style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                <option value="5">5 - Excellent</option>
+                <option value="4">4 - Good</option>
+                <option value="3">3 - Average</option>
+                <option value="2">2 - Poor</option>
+                <option value="1">1 - Terrible</option>
+            </select>
+        </div>
+        <div>
+            <label>Comment</label>
+            <textarea name="Comment" rows="4" required
+                style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;"></textarea>
+        </div>
+        <button type="submit" class="btn-premium" style="margin-top: 1rem;">Save Review</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% set active_page = "reviews" %}
+
+{% block title %}Reviews | Glit & Glamour{% endblock %}
+
+{% block head %}
+<style>
+    .rating-summary {
+        background: var(--secondary);
+        color: white;
+        padding: 2rem;
+        border-radius: 8px;
+        text-align: center;
+        margin-bottom: 2rem;
+        box-shadow: var(--shadow);
+    }
+
+    .rating-summary h2 {
+        font-size: 3rem;
+        margin: 0;
+    }
+
+    .review-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .review-card {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 8px;
+        box-shadow: var(--shadow);
+        border: 1px solid #eee;
+    }
+
+    .review-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.5rem;
+    }
+
+    .stars {
+        color: #FFD700;
+        font-size: 1.2rem;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+    <div>
+        <h1>Client Reviews</h1>
+        <p class="overview-text">Feedback and testimonials.</p>
+    </div>
+    <a href="{{ url_for('management.add_review') }}" class="btn-premium">Add Review</a>
+</div>
+
+<div class="rating-summary">
+    <h2>{{ avg_rating }} / 5.0</h2>
+    <p>Average Client Rating</p>
+</div>
+
+<div class="review-list">
+    {% if reviews %}
+    {% for r in reviews %}
+    <div class="review-card">
+        <div class="review-header">
+            <strong>{{ r.ClientName }}</strong>
+            <span style="color: var(--text-light); font-size: 0.9rem;">{{ r.Date }}</span>
+        </div>
+        <div class="stars">
+            {% for i in range(r.Rating|int) %}★{% endfor %}
+            {% for i in range(5 - r.Rating|int) %}☆{% endfor %}
+        </div>
+        <p style="margin-top: 0.5rem; color: var(--text-base);">"{{ r.Comment }}"</p>
+    </div>
+    {% endfor %}
+    {% else %}
+    <div class="empty-state" style="text-align: center; padding: 4rem; background: white; border-radius: 8px;">
+        <p>No reviews yet.</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

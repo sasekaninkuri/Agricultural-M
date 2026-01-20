@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% set active_page = "staff" %}
+
+{% block title %}Staff Management | Glit & Glamour{% endblock %}
+
+{% block head %}
+<style>
+    .header-flex {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .card {
+        background: white;
+        border-radius: var(--border-radius);
+        padding: 1.5rem;
+        box-shadow: var(--shadow);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .card h3 {
+        color: var(--secondary);
+        margin-bottom: 0.5rem;
+    }
+
+    .role-badge {
+        background: var(--bg-canvas);
+        color: var(--primary);
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="header-flex">
+    <div>
+        <h1>Staff Team</h1>
+        <p class="overview-text">Manage your expert salon team members.</p>
+    </div>
+    <a href="{{ url_for('management.add_staff') }}" class="btn-premium">Add Staff Member</a>
+</div>
+
+<div class="grid-container">
+    {% if staff %}
+    {% for s in staff %}
+    <div class="card">
+        <h3>{{ s.Name }}</h3>
+        <span class="role-badge">{{ s.Role }}</span>
+        <p style="margin-top: 1rem; color: var(--text-base);"><strong>Specialty:</strong> {{ s.Specialty }}</p>
+        <div style="margin-top: 1rem; color: var(--text-light); font-size: 0.9rem;">
+            <div>{{ s.Contacts }}</div>
+            <div>{{ s.Email }}</div>
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <div class="empty-state" style="grid-column: 1/-1; text-align: center; padding: 4rem;">
+        <p>No staff members found. Add your team!</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

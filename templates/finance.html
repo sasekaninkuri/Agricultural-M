@@ -1,159 +1,108 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
+{% set active_page = "finance" %}
 
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Finance | Glit & Glamour</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="{{ url_for('static', filename='theme.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='Dashboard.css') }}">
-  <style>
-    .finance-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 2rem;
-    }
+{% block title %}Finance | Glit & Glamour{% endblock %}
 
-    .finance-table-container {
-      background: white;
-      border-radius: var(--border-radius);
-      padding: 1.5rem;
-      box-shadow: var(--shadow);
-      border: 1px solid rgba(0, 0, 0, 0.05);
-    }
+{% block head %}
+<style>
+  .finance-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
 
-    .finance-table {
-      width: 100%;
-      border-collapse: collapse;
-    }
+  .finance-table-container {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  }
 
-    .finance-table th {
-      text-align: left;
-      padding: 1rem;
-      border-bottom: 2px solid var(--bg-canvas);
-      color: var(--text-light);
-      font-weight: 600;
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
+  .finance-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
 
-    .finance-table td {
-      padding: 1.2rem 1rem;
-      border-bottom: 1px solid var(--bg-canvas);
-      font-size: 0.95rem;
-    }
+  .finance-table th {
+    text-align: left;
+    padding: 1rem;
+    border-bottom: 2px solid var(--bg-canvas);
+    color: var(--text-light);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
 
-    .finance-table tr:last-child td {
-      border-bottom: none;
-    }
+  .finance-table td {
+    padding: 1.2rem 1rem;
+    border-bottom: 1px solid var(--bg-canvas);
+    font-size: 0.95rem;
+  }
 
-    .finance-table tr:hover {
-      background-color: #fafafa;
-    }
+  .finance-table tr:last-child td {
+    border-bottom: none;
+  }
 
-    .amount-tag {
-      font-weight: 600;
-      color: var(--secondary);
-    }
+  .finance-table tr:hover {
+    background-color: #fafafa;
+  }
 
-    .date-tag {
-      color: var(--text-light);
-      font-size: 0.85rem;
-    }
+  .amount-tag {
+    font-weight: 600;
+    color: var(--secondary);
+  }
 
-    .empty-state {
-      text-align: center;
-      padding: 4rem 2rem;
-      color: var(--text-light);
-    }
-  </style>
-</head>
+  .date-tag {
+    color: var(--text-light);
+    font-size: 0.85rem;
+  }
 
-<body>
-  <div class="container">
-    <aside class="sidebar">
-      <div class="brand">GLIT & GLAMOUR</div>
-      <ul>
-        <li><a href="{{ url_for('main.index') }}">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-            </svg>
-            Dashboard</a>
-        </li>
-        <li><a href="{{ url_for('management.get_finance') }}" class="active">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            Finances</a>
-        </li>
-        <li><a href="{{ url_for('services.get_hair') }}">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879M12 12L9.121 9.121m0 5.758a3 3 0 10-4.243 4.243 3 3 0 004.243-4.243zm0-5.758a3 3 0 10-4.243-4.243 3 3 0 004.243 4.243z" />
-            </svg>
-            Services</a>
-        </li>
-        <li><a href="{{ url_for('management.get_clients') }}">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-            </svg>
-            Clients</a>
-        </li>
-        <li><a href="{{ url_for('management.get_bookings') }}">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 00-2 2z" />
-            </svg>
-            Bookings</a>
-        </li>
-      </ul>
-    </aside>
+  .empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--text-light);
+  }
+</style>
+{% endblock %}
 
-    <main class="content">
-      <div class="finance-header">
-        <div>
-          <h1>Finance Overview</h1>
-          <p class="overview-text">Manage your salon's transactions and revenue.</p>
-        </div>
-        <a href="{{ url_for('management.add_finance') }}" class="btn-premium">Add Transaction</a>
-      </div>
-
-      <div class="finance-table-container">
-        <table class="finance-table">
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Description</th>
-              <th>Amount</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% if x %}
-            {% for i in x %}
-            <tr>
-              <td class="date-tag">{{ i.Date }}</td>
-              <td>{{ i.Description }}</td>
-              <td class="amount-tag">R {{ i.Amount }}</td>
-            </tr>
-            {% endfor %}
-            {% else %}
-            <tr>
-              <td colspan="3" class="empty-state">
-                <p>No transactions found. Add your first financial record above.</p>
-              </td>
-            </tr>
-            {% endif %}
-          </tbody>
-        </table>
-      </div>
-    </main>
+{% block content %}
+<div class="finance-header">
+  <div>
+    <h1>Finance Overview</h1>
+    <p class="overview-text">Manage your salon's transactions and revenue.</p>
   </div>
-</body>
+  <a href="{{ url_for('management.add_finance') }}" class="btn-premium">Add Transaction</a>
+</div>
 
-</html>
+<div class="finance-table-container">
+  <table class="finance-table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Description</th>
+        <th>Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if x %}
+      {% for i in x %}
+      <tr>
+        <td class="date-tag">{{ i.Date }}</td>
+        <td>{{ i.Description }}</td>
+        <td class="amount-tag">R {{ i.Amount }}</td>
+      </tr>
+      {% endfor %}
+      {% else %}
+      <tr>
+        <td colspan="3" class="empty-state">
+          <p>No transactions found. Add your first financial record above.</p>
+        </td>
+      </tr>
+      {% endif %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
